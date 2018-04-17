@@ -286,11 +286,11 @@ namespace WindowsFormsApplication1
 
             while(mouseLine.Length > numSeq)
             {
-                if (mouseLine[numSeq].Contains("Normal"))
+                if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Normal\""))
                 {
                     scopeLines[0] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[0], mouseLine);
-                    normSens = double.Parse(temp.Substring(0, temp.Length - 1));
+                    normSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblNorm.Text = "------> " + normSens;
                 }
                 else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Targeting\""))

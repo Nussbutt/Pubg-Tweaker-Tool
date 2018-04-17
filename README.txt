@@ -5,6 +5,7 @@
 // ===============================
 // Change History: Everything works?
 //
+// 1.0.2 - Nah it doesn't, fixed a dumb error with finding normal sens. Still has pretty much no error checking.
 //==================================
 
 PUBG Tweaker Tool is a Windows application written in C#. 
