@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,6 +143,8 @@ namespace WindowsFormsApplication1
                     GUSetting_list[whatLine["fpsFov"]] = GUSetting_list[whatLine["fpsFov"]].Substring(0, GUSetting_list[whatLine["fpsFov"]].IndexOf("=") + 1) + "103";
                 }
             }
+            else
+                GUSetting_list[whatLine["fpsFov"]] = GUSetting_list[whatLine["fpsFov"]].Substring(0, GUSetting_list[whatLine["fpsFov"]].IndexOf("=") + 1) + txtFov.Text;
             //Save the files
 
             //Input file for verical sensitivity fix
@@ -206,6 +209,7 @@ namespace WindowsFormsApplication1
         public string convertSens(int isScope)
         {
             double newSens;
+            decimal value;
             //CS or overwatch?
             if (cmbGame.SelectedIndex == 0)
                 newSens = double.Parse(txtSens.Text);
