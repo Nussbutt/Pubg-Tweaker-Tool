@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formPutt));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPg1 = new System.Windows.Forms.TabPage();
+            this.lblEntSixx = new System.Windows.Forms.Label();
+            this.txtSixx = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.chkVert = new System.Windows.Forms.CheckBox();
             this.txtFov = new System.Windows.Forms.TextBox();
             this.lblEntFov = new System.Windows.Forms.Label();
@@ -80,6 +83,9 @@
             this.tipsNtricks = new System.Windows.Forms.ToolTip(this.components);
             this.btnConvert = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtThreex = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblEntThreex = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPg1.SuspendLayout();
             this.tabPg2.SuspendLayout();
@@ -100,6 +106,12 @@
             // 
             this.tabPg1.AccessibleName = "";
             this.tabPg1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPg1.Controls.Add(this.lblEntThreex);
+            this.tabPg1.Controls.Add(this.label15);
+            this.tabPg1.Controls.Add(this.txtThreex);
+            this.tabPg1.Controls.Add(this.lblEntSixx);
+            this.tabPg1.Controls.Add(this.txtSixx);
+            this.tabPg1.Controls.Add(this.label14);
             this.tabPg1.Controls.Add(this.chkVert);
             this.tabPg1.Controls.Add(this.txtFov);
             this.tabPg1.Controls.Add(this.lblEntFov);
@@ -133,6 +145,33 @@
             this.tabPg1.TabIndex = 0;
             this.tabPg1.Text = "Mouse Sens";
             // 
+            // lblEntSixx
+            // 
+            this.lblEntSixx.AutoSize = true;
+            this.lblEntSixx.Location = new System.Drawing.Point(77, 303);
+            this.lblEntSixx.Name = "lblEntSixx";
+            this.lblEntSixx.Size = new System.Drawing.Size(24, 13);
+            this.lblEntSixx.TabIndex = 28;
+            this.lblEntSixx.Text = "6x: ";
+            // 
+            // txtSixx
+            // 
+            this.txtSixx.Location = new System.Drawing.Point(187, 300);
+            this.txtSixx.Name = "txtSixx";
+            this.txtSixx.Size = new System.Drawing.Size(43, 20);
+            this.txtSixx.TabIndex = 27;
+            this.txtSixx.Text = "50";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(244, 338);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(127, 13);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "% Decreased from normal";
+            this.tipsNtricks.SetToolTip(this.label14, "When in 8x scope your sens will be this % of your normal target speed");
+            // 
             // chkVert
             // 
             this.chkVert.AutoSize = true;
@@ -141,8 +180,9 @@
             this.chkVert.Size = new System.Drawing.Size(127, 17);
             this.chkVert.TabIndex = 25;
             this.chkVert.Text = "Fix Vertical Sensitivity";
-            this.tipsNtricks.SetToolTip(this.chkVert, "Vert Sensitivity is 70% of horizontal\r\n\r\n**Check if patched**\r\n**As of 4/5/18 sti" +
-        "ll bugged**");
+            this.tipsNtricks.SetToolTip(this.chkVert, "Vert Sensitivity is 70% of horizontal by default\r\n\r\n**Update - Mouse Vertical Sen" +
+        "sitivity has a slider now!**\r\n**If checked (1:1 ratio)**\r\n**if unchecked 70%    " +
+        " **\r\n");
             this.chkVert.UseVisualStyleBackColor = true;
             // 
             // txtFov
@@ -165,36 +205,36 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(244, 362);
+            this.label6.Location = new System.Drawing.Point(244, 303);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(127, 13);
             this.label6.TabIndex = 22;
             this.label6.Text = "% Decreased from normal";
-            this.tipsNtricks.SetToolTip(this.label6, "When in 15x scope your sens will be this % of your normal target speed");
+            this.tipsNtricks.SetToolTip(this.label6, "When in 6x scope your sens will be this % of your normal target speed");
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(244, 314);
+            this.label5.Location = new System.Drawing.Point(244, 268);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(127, 13);
             this.label5.TabIndex = 21;
             this.label5.Text = "% Decreased from normal";
-            this.tipsNtricks.SetToolTip(this.label5, "When in 8x scope your sens will be this % of your normal target speed");
+            this.tipsNtricks.SetToolTip(this.label5, "When in 4x scope your sens will be this % of your normal target speed");
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(244, 266);
+            this.label4.Location = new System.Drawing.Point(244, 233);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(127, 13);
             this.label4.TabIndex = 20;
             this.label4.Text = "% Decreased from normal";
-            this.tipsNtricks.SetToolTip(this.label4, "When in 4x scope your sens will be this % of your normal target speed");
+            this.tipsNtricks.SetToolTip(this.label4, "When in 3x scope your sens will be this % of your normal target speed");
             // 
             // txtFifteenx
             // 
-            this.txtFifteenx.Location = new System.Drawing.Point(187, 359);
+            this.txtFifteenx.Location = new System.Drawing.Point(187, 370);
             this.txtFifteenx.Name = "txtFifteenx";
             this.txtFifteenx.Size = new System.Drawing.Size(43, 20);
             this.txtFifteenx.TabIndex = 19;
@@ -203,7 +243,7 @@
             // lblEntFifteenx
             // 
             this.lblEntFifteenx.AutoSize = true;
-            this.lblEntFifteenx.Location = new System.Drawing.Point(71, 362);
+            this.lblEntFifteenx.Location = new System.Drawing.Point(71, 373);
             this.lblEntFifteenx.Name = "lblEntFifteenx";
             this.lblEntFifteenx.Size = new System.Drawing.Size(27, 13);
             this.lblEntFifteenx.TabIndex = 18;
@@ -211,7 +251,7 @@
             // 
             // txtEightx
             // 
-            this.txtEightx.Location = new System.Drawing.Point(187, 311);
+            this.txtEightx.Location = new System.Drawing.Point(187, 335);
             this.txtEightx.Name = "txtEightx";
             this.txtEightx.Size = new System.Drawing.Size(43, 20);
             this.txtEightx.TabIndex = 17;
@@ -220,7 +260,7 @@
             // lblEntEightx
             // 
             this.lblEntEightx.AutoSize = true;
-            this.lblEntEightx.Location = new System.Drawing.Point(77, 314);
+            this.lblEntEightx.Location = new System.Drawing.Point(77, 338);
             this.lblEntEightx.Name = "lblEntEightx";
             this.lblEntEightx.Size = new System.Drawing.Size(21, 13);
             this.lblEntEightx.TabIndex = 16;
@@ -228,7 +268,7 @@
             // 
             // txtFourx
             // 
-            this.txtFourx.Location = new System.Drawing.Point(187, 263);
+            this.txtFourx.Location = new System.Drawing.Point(187, 265);
             this.txtFourx.Name = "txtFourx";
             this.txtFourx.Size = new System.Drawing.Size(43, 20);
             this.txtFourx.TabIndex = 15;
@@ -237,7 +277,7 @@
             // lblEntFourx
             // 
             this.lblEntFourx.AutoSize = true;
-            this.lblEntFourx.Location = new System.Drawing.Point(77, 266);
+            this.lblEntFourx.Location = new System.Drawing.Point(77, 268);
             this.lblEntFourx.Name = "lblEntFourx";
             this.lblEntFourx.Size = new System.Drawing.Size(21, 13);
             this.lblEntFourx.TabIndex = 14;
@@ -246,7 +286,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(244, 218);
+            this.label3.Location = new System.Drawing.Point(244, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 13);
             this.label3.TabIndex = 13;
@@ -255,7 +295,7 @@
             // 
             // txtTwox
             // 
-            this.txtTwox.Location = new System.Drawing.Point(187, 215);
+            this.txtTwox.Location = new System.Drawing.Point(187, 195);
             this.txtTwox.Name = "txtTwox";
             this.txtTwox.Size = new System.Drawing.Size(43, 20);
             this.txtTwox.TabIndex = 12;
@@ -264,7 +304,7 @@
             // lblEntTwox
             // 
             this.lblEntTwox.AutoSize = true;
-            this.lblEntTwox.Location = new System.Drawing.Point(77, 218);
+            this.lblEntTwox.Location = new System.Drawing.Point(77, 198);
             this.lblEntTwox.Name = "lblEntTwox";
             this.lblEntTwox.Size = new System.Drawing.Size(21, 13);
             this.lblEntTwox.TabIndex = 11;
@@ -273,7 +313,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(244, 173);
+            this.label2.Location = new System.Drawing.Point(244, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 10;
@@ -282,7 +322,7 @@
             // 
             // txtScope
             // 
-            this.txtScope.Location = new System.Drawing.Point(187, 170);
+            this.txtScope.Location = new System.Drawing.Point(187, 160);
             this.txtScope.Name = "txtScope";
             this.txtScope.Size = new System.Drawing.Size(43, 20);
             this.txtScope.TabIndex = 9;
@@ -291,7 +331,7 @@
             // lblEntScope
             // 
             this.lblEntScope.AutoSize = true;
-            this.lblEntScope.Location = new System.Drawing.Point(50, 173);
+            this.lblEntScope.Location = new System.Drawing.Point(50, 163);
             this.lblEntScope.Name = "lblEntScope";
             this.lblEntScope.Size = new System.Drawing.Size(55, 13);
             this.lblEntScope.TabIndex = 8;
@@ -318,7 +358,7 @@
             // lblEntTar
             // 
             this.lblEntTar.AutoSize = true;
-            this.lblEntTar.Location = new System.Drawing.Point(45, 128);
+            this.lblEntTar.Location = new System.Drawing.Point(47, 128);
             this.lblEntTar.Name = "lblEntTar";
             this.lblEntTar.Size = new System.Drawing.Size(58, 13);
             this.lblEntTar.TabIndex = 5;
@@ -616,6 +656,33 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtThreex
+            // 
+            this.txtThreex.Location = new System.Drawing.Point(187, 230);
+            this.txtThreex.Name = "txtThreex";
+            this.txtThreex.Size = new System.Drawing.Size(43, 20);
+            this.txtThreex.TabIndex = 29;
+            this.txtThreex.Text = "70";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(244, 373);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(127, 13);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "% Decreased from normal";
+            this.tipsNtricks.SetToolTip(this.label15, "When in 15x scope your sens will be this % of your normal target speed");
+            // 
+            // lblEntThreex
+            // 
+            this.lblEntThreex.AutoSize = true;
+            this.lblEntThreex.Location = new System.Drawing.Point(77, 233);
+            this.lblEntThreex.Name = "lblEntThreex";
+            this.lblEntThreex.Size = new System.Drawing.Size(24, 13);
+            this.lblEntThreex.TabIndex = 31;
+            this.lblEntThreex.Text = "3x: ";
+            // 
             // formPutt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -689,6 +756,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblAA;
+        private System.Windows.Forms.Label lblEntSixx;
+        private System.Windows.Forms.TextBox txtSixx;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblEntThreex;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtThreex;
     }
 }
 

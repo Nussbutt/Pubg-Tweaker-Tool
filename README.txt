@@ -5,7 +5,8 @@
 // ===============================
 // Change History: Everything works?
 //
-// 1.0.2 - Nah it doesn't, fixed a dumb error with finding normal sens. Still has pretty much no error checking.
+// 04/16/2018 - Nah it doesn't, fixed a dumb error with finding normal sens. Still has pretty much no error checking.
+// 05/03/2018 - *Updated* vertical sens fix (erases everything in input.ini). Added 3x and 6x scopes, fixed saving FOV setting.
 //==================================
 
 PUBG Tweaker Tool is a Windows application written in C#. 

@@ -23,8 +23,9 @@ namespace WindowsFormsApplication1
     public partial class formPutt : Form
     {
         //instantiate everything
-        double normSens, tarSens, scopeSens, twoSens, fourSens, eightSens, fifteenSens, csSens, owSens;
-        int[] scopeLines = new int[7];
+        double normSens, tarSens, scopeSens, twoSens, threeSens, fourSens, sixSens, eightSens, fifteenSens, csSens, owSens, vertMult;
+        int[] scopeLines = new int[9];
+        int vertMultLine = -1;
         static string path = Environment.GetEnvironmentVariable("LocalAppData") + @"\TslGame\Saved\Config\WindowsNoEditor\GameUserSettings.ini";
         static string inputPath = Environment.GetEnvironmentVariable("LocalAppData") + @"\TslGame\Saved\Config\WindowsNoEditor\input.ini";
         Dictionary<string, int> whatLine;
@@ -65,8 +66,14 @@ namespace WindowsFormsApplication1
             twoSens = Math.Round(double.Parse(convertSens(2)) * (double.Parse(txtTwox.Text) / 100), 6);
             lblEntTwox.Text = "2x: " + twoSens + " <------";
 
+            threeSens = Math.Round(double.Parse(convertSens(3)) * (double.Parse(txtThreex.Text) / 100), 6);
+            lblEntThreex.Text = "3x: " + threeSens + " <------";
+
             fourSens = Math.Round(double.Parse(convertSens(4)) * (double.Parse(txtFourx.Text) / 100), 6);
             lblEntFourx.Text = "4x: " + fourSens + " <------";
+
+            sixSens = Math.Round(double.Parse(convertSens(6)) * (double.Parse(txtSixx.Text) / 100), 6);
+            lblEntSixx.Text = "6x: " + sixSens + " <------";
 
             eightSens = Math.Round(double.Parse(convertSens(8)) * (double.Parse(txtEightx.Text) / 100), 6);
             lblEntEightx.Text = "8x: " + eightSens + " <------";
@@ -81,7 +88,7 @@ namespace WindowsFormsApplication1
         {
             //edit sensitivities
             string temp, tmpSens = "";
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 9; i++)
             {
                 if (i == 0)
                     tmpSens = normSens.ToString();
@@ -92,10 +99,14 @@ namespace WindowsFormsApplication1
                 else if (i == 3)
                     tmpSens = twoSens.ToString();
                 else if (i == 4)
-                    tmpSens = fourSens.ToString();
+                    tmpSens = threeSens.ToString();
                 else if (i == 5)
-                    tmpSens = eightSens.ToString();
+                    tmpSens = fourSens.ToString();
                 else if (i == 6)
+                    tmpSens = sixSens.ToString();
+                else if (i == 7)
+                    tmpSens = eightSens.ToString();
+                else if (i == 8)
                     tmpSens = fifteenSens.ToString();
                 //make sure the final string is always 8 characters before writeing it to the line
                 tmpSens = (tmpSens + "000000").Substring(0, 8);
@@ -124,6 +135,12 @@ namespace WindowsFormsApplication1
 
             GUSetting_list[whatLine["scale"]] = GUSetting_list[whatLine["scale"]].Substring(0, GUSetting_list[whatLine["scale"]].IndexOf("=") + 1) + txtScale.Text;
 
+            //new Vert Fix
+            if (chkVert.Checked == true)
+                mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "1.000000";
+            else
+                mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "0.700000";
+
             //join the mouse lines back
             var newLine = string.Join(",", mouseLine);
             GUSetting_list[whatLine["mouseSens"]] = newLine;
@@ -145,8 +162,10 @@ namespace WindowsFormsApplication1
             }
             else
                 GUSetting_list[whatLine["fpsFov"]] = GUSetting_list[whatLine["fpsFov"]].Substring(0, GUSetting_list[whatLine["fpsFov"]].IndexOf("=") + 1) + txtFov.Text;
+
             //Save the files
 
+            /** OLD VERT SENS FIX
             //Input file for verical sensitivity fix
             string[] newList = { "1", "2", "3", "4", "5", "6"};
             if (chkVert.Checked == true)
@@ -159,6 +178,10 @@ namespace WindowsFormsApplication1
                 newList = new string[]{ " " };
             }
             input_list = newList;
+            */
+
+            //EMPTY input.ini
+            input_list = new string[] { " " }; ;
 
             //Make GameUserSettings writeable, write to GameUserSettings
             //Make Input writeable, write to Input, make Input read only again
@@ -270,7 +293,7 @@ namespace WindowsFormsApplication1
                     whatLine.Add("scale", numSeq);
                 numSeq++;
             }
-
+            /**--------YE OLD VERT CHECK
             //check for input fix
             numSeq = 0;
             while (input_list.Length > numSeq)
@@ -282,6 +305,11 @@ namespace WindowsFormsApplication1
 
                 numSeq++;
             }
+            */
+            if (vertMult == 1)
+                chkVert.Checked = true;
+            else
+                chkVert.Checked = false;
 
             //split the mouse line stuff, makes it easier to read and write
             //make sure to save what line corosponds to each scope sensitivitiy
@@ -319,26 +347,48 @@ namespace WindowsFormsApplication1
                     twoSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntTwox.Text = "2x: " + twoSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope4X\""))
+                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope3x\""))
                 {
                     scopeLines[4] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[4], mouseLine);
-                    fourSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
-                    lblEntFourx.Text = "4x: " + fourSens + " <------";
+                    threeSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
+                    lblEntThreex.Text = "3x: " + threeSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope8X\""))
+                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope4X\""))
                 {
                     scopeLines[5] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[5], mouseLine);
+                    fourSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
+                    lblEntFourx.Text = "4x: " + fourSens + " <------";
+                }
+                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope6x\""))
+                {
+                    scopeLines[6] = Find_lastConvSens(numSeq);
+                    string temp = Find_Val(scopeLines[6], mouseLine);
+                    sixSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
+                    lblEntSixx.Text = "6x: " + sixSens + " <------";
+                }
+                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope8X\""))
+                {
+                    scopeLines[7] = Find_lastConvSens(numSeq);
+                    string temp = Find_Val(scopeLines[7], mouseLine);
                     eightSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntEightx.Text = "8x: " + eightSens + " <------";
                 }
                 else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope15X\""))
                 {
-                    scopeLines[6] = Find_lastConvSens(numSeq);
-                    string temp = Find_Val(scopeLines[6], mouseLine);
+                    scopeLines[8] = Find_lastConvSens(numSeq);
+                    string temp = Find_Val(scopeLines[8], mouseLine);
                     fifteenSens = double.Parse(new string(temp.Where(c => !char.Equals(c,')')).ToArray()));
                     lblEntFifteenx.Text = "15x: " + fifteenSens + " <------";
+                }
+                //NEW vert sens
+                else if (mouseLine[numSeq].Contains("MouseVerticalSensitivityMultiplier"))
+                {
+                    vertMultLine = numSeq;
+                    string temp = Find_Val(vertMultLine, mouseLine);
+                    vertMult = double.Parse(temp);
+                    //IF vertMult is not 1.428571 fix is not applied
                 }
                 numSeq++;
             }
