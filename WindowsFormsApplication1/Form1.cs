@@ -136,10 +136,10 @@ namespace WindowsFormsApplication1
             GUSetting_list[whatLine["scale"]] = GUSetting_list[whatLine["scale"]].Substring(0, GUSetting_list[whatLine["scale"]].IndexOf("=") + 1) + txtScale.Text;
 
             //new Vert Fix
-            if (chkVert.Checked == true)
-                mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "1.000000";
-            else
-                mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "0.700000";
+            //if (chkVert.Checked == true)
+            //    mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "1.000000";
+            //else
+            //    mouseLine[vertMultLine] = mouseLine[vertMultLine].Substring(0, mouseLine[vertMultLine].IndexOf("=") + 1) + "0.700000";
 
             //join the mouse lines back
             var newLine = string.Join(",", mouseLine);
@@ -210,7 +210,13 @@ namespace WindowsFormsApplication1
          */
         public string Find_Val(int pos, string[] list)
         {
-            string value = list[pos].Substring(list[pos].IndexOf("=") + 1);
+            string value = "0.00";
+            if (pos == -1)
+            {
+                Console.WriteLine("ERRRRRORRRRRRR - FIX IT!");
+            }
+            else
+                value = list[pos].Substring(list[pos].IndexOf("=") + 1);
             return value;
         }
         /**Find_lastConvSens - returns int position, takes int position
@@ -220,7 +226,7 @@ namespace WindowsFormsApplication1
         {
             for (int i = curLine; i <= curLine + 3; i++)
             {
-                if(mouseLine[i].Contains("LastConvertedMouseSensitivity"))
+                if(mouseLine[i].Contains("LastConvertedSensitivity"))
                     return i;
             }
             return -1;
@@ -318,14 +324,17 @@ namespace WindowsFormsApplication1
 
             while(mouseLine.Length > numSeq)
             {
-                if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Normal\""))
+                if (mouseLine[numSeq].Contains("(GamePad"))
+                    numSeq = mouseLine.Length - 1;
+
+                if (mouseLine[numSeq].Contains("SensitiveName=\"Normal\""))
                 {
                     scopeLines[0] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[0], mouseLine);
                     normSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblNorm.Text = "------> " + normSens;
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Targeting\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Targeting\""))
                 {
                     scopeLines[1] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[1], mouseLine);
@@ -333,55 +342,56 @@ namespace WindowsFormsApplication1
                     tarSens = double.Parse(new string(temp.Where(c => !char.Equals(c,')')).ToArray()));
                     lblEntTar.Text = "Targeting: " + tarSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scoping\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scoping\""))
                 {
                     scopeLines[2] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[2], mouseLine);
                     scopeSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntScope.Text = "Scoping: " + scopeSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope2X\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope2X\""))
                 {
                     scopeLines[3] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[3], mouseLine);
                     twoSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntTwox.Text = "2x: " + twoSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope3x\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope3X\""))
                 {
                     scopeLines[4] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[4], mouseLine);
                     threeSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntThreex.Text = "3x: " + threeSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope4X\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope4X\""))
                 {
                     scopeLines[5] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[5], mouseLine);
                     fourSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntFourx.Text = "4x: " + fourSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope6x\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope6X\""))
                 {
                     scopeLines[6] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[6], mouseLine);
                     sixSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntSixx.Text = "6x: " + sixSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope8X\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope8X\""))
                 {
                     scopeLines[7] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[7], mouseLine);
                     eightSens = double.Parse(new string(temp.Where(c => !char.Equals(c, ')')).ToArray()));
                     lblEntEightx.Text = "8x: " + eightSens + " <------";
                 }
-                else if (mouseLine[numSeq].Contains("MouseSensitiveName=\"Scope15X\""))
+                else if (mouseLine[numSeq].Contains("SensitiveName=\"Scope15X\""))
                 {
                     scopeLines[8] = Find_lastConvSens(numSeq);
                     string temp = Find_Val(scopeLines[8], mouseLine);
                     fifteenSens = double.Parse(new string(temp.Where(c => !char.Equals(c,')')).ToArray()));
                     lblEntFifteenx.Text = "15x: " + fifteenSens + " <------";
                 }
+                
                 //NEW vert sens
                 else if (mouseLine[numSeq].Contains("MouseVerticalSensitivityMultiplier"))
                 {
