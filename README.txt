@@ -1,5 +1,5 @@
 // ===============================
-// AUTHOR      :Nussbutt
+// AUTHOR      :Nussbutter
 // CREATE DATE :04/11/2018
 // PURPOSE     :Allow Users to easily convert mouse sensitivities & alter settings for PUBG
 // ===============================
