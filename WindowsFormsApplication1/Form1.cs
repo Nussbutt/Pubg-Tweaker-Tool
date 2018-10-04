@@ -271,8 +271,17 @@ namespace WindowsFormsApplication1
             //load file into list, check for...
             //fov, mouse sens(more to do with that), aaqual, blur, vsync, postprocess, shadow, tex, fx, grass, vdist, scale
             int numSeq = 0;
-            while(GUSetting_list.Length > numSeq)
+            string lineType = "";
+            while (GUSetting_list.Length > numSeq)
             {
+                //ignore TslPersistantData! *Quick duplicate key fix*
+                if (GUSetting_list[numSeq].Contains("TslPersistantData"))
+                {
+                    Console.WriteLine(GUSetting_list[numSeq]);
+                    GUSetting_list[numSeq] = "";
+                }
+
+
                 if (GUSetting_list[numSeq].Contains("CustomInputSettins"))
                     whatLine.Add("mouseSens", numSeq);
                 else if (GUSetting_list[numSeq].Contains("FpsCameraFov"))
@@ -282,7 +291,7 @@ namespace WindowsFormsApplication1
                 else if (GUSetting_list[numSeq].Contains("bUseVSync"))
                     whatLine.Add("vSync", numSeq);
                 else if (GUSetting_list[numSeq].Contains("sg.AntiAliasingQuality"))
-                    whatLine.Add("aaQual", numSeq);                
+                    whatLine.Add("aaQual", numSeq);
                 else if (GUSetting_list[numSeq].Contains("sg.PostProcessQuality"))
                     whatLine.Add("pProc", numSeq);
                 else if (GUSetting_list[numSeq].Contains("sg.ShadowQuality"))
@@ -296,7 +305,7 @@ namespace WindowsFormsApplication1
                 else if (GUSetting_list[numSeq].Contains("sg.ViewDistanceQuality"))
                     whatLine.Add("vDist", numSeq);
                 else if (GUSetting_list[numSeq].Contains("ScreenScale"))
-                    whatLine.Add("scale", numSeq);
+                    whatLine.Add("scale", numSeq);                
                 numSeq++;
             }
             /**--------YE OLD VERT CHECK
