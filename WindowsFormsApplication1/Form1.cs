@@ -271,7 +271,6 @@ namespace WindowsFormsApplication1
             //load file into list, check for...
             //fov, mouse sens(more to do with that), aaqual, blur, vsync, postprocess, shadow, tex, fx, grass, vdist, scale
             int numSeq = 0;
-            string lineType = "";
             while (GUSetting_list.Length > numSeq)
             {
                 //ignore TslPersistantData! *Quick duplicate key fix*
